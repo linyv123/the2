@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管緒リルカ｜音源&角色完整使用规约</title>
+<meta name="description" content="管緒リルカ UTAU 音源与角色使用规约：自由使用范围、创作欢迎事项、需授权行为、禁止行为与使用提示（中 / EN / 日本語）。">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root{
+    --paper:#f4f2ec;
+    --card:#fffdf8;
+    --ink:#26282e;
+    --ink-soft:#5d6068;
+    --line:#ddd9cf;
+    --blue:#2f6fb0;
+    --blue-deep:#1d4d80;
+    --mint:#24896f;
+    --mint-bg:#e5f3ee;
+    --amber:#9c6f1c;
+    --amber-bg:#f9f0da;
+    --red:#b84343;
+    --red-bg:#f9e8e8;
+    --slate:#54575f;
+    --slate-bg:#eceef1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--paper);
+    background-image:radial-gradient(rgba(35,40,45,.045) 1px,transparent 1px);
+    background-size:22px 22px;
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:0 20px}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,242,236,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .inner{
+    max-width:780px;margin:0 auto;padding:10px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:.5px}
+  .brand img{width:30px;height:30px;border-radius:8px;border:1px solid #cfcbc0;background:#fff}
+  .brand small{font-weight:500;color:var(--ink-soft);font-size:11px;letter-spacing:1px;margin-left:2px}
+  .top-actions{display:flex;align-items:center;gap:10px}
+  .lang-switch{
+    display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff;
+  }
+  .lang-switch button{
+    border:0;background:transparent;padding:5px 12px;font-size:13px;cursor:pointer;color:var(--ink-soft);
+    font-family:inherit;transition:background .15s,color .15s;
+  }
+  .lang-switch button + button{border-left:1px solid var(--line)}
+  .lang-switch button.active{background:var(--blue-deep);color:#fff;font-weight:600}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;
+    border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600;
+    text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;
+    transition:transform .12s, box-shadow .12s, background .15s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-blue{background:var(--blue-deep);color:#fff}
+  .btn-blue:hover{background:#16395f;box-shadow:0 4px 12px rgba(29,77,128,.25)}
+  .btn-outline{border-color:var(--line);color:var(--ink);background:#fff}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue-deep)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:34px 0 6px}
+  .hero-grid{display:flex;gap:26px;align-items:center}
+  .hero-icon{
+    flex:0 0 auto;position:relative;
+  }
+  .hero-icon img{
+    width:128px;height:128px;border-radius:18px;
+    border:3px solid #fff;outline:1px solid var(--line);
+    transform:rotate(-2.5deg);
+    box-shadow:6px 8px 0 rgba(35,40,45,.08);
+    background:#fff;
+  }
+  .hero-icon::after{
+    content:"";position:absolute;inset:-8px;border:2px dashed rgba(36,137,111,.5);
+    border-radius:24px;transform:rotate(3deg);z-index:-1;
+  }
+  .hero-info h1{font-size:34px;line-height:1.2;letter-spacing:1px;font-weight:900}
+  .hero-info .kicker{
+    font-size:12px;letter-spacing:3px;color:var(--mint);font-weight:700;margin-bottom:4px;
+  }
+  .hero-info .sub{color:var(--ink-soft);font-size:15px;margin-top:2px}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;list-style:none}
+  .hero-tags li{
+    font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:3px 11px;color:var(--ink);
+  }
+  .hero-tags li:nth-child(3){border-color:rgba(36,137,111,.45);background:var(--mint-bg);color:var(--mint);font-weight:600}
+  .hero-dl{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .btn-dl{background:var(--mint);color:#fff;padding:11px 26px;font-size:15px;box-shadow:0 4px 14px rgba(36,137,111,.28)}
+  .btn-dl:hover{background:#1d755f;box-shadow:0 6px 18px rgba(36,137,111,.34)}
+  .dl-meta{font-size:12px;color:var(--ink-soft)}
+  .dl-meta code{background:#fff;border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:11px}
+
+  /* section nav */
+  .secnav{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px}
+  .secnav a{
+    font-size:12.5px;text-decoration:none;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;
+    transition:all .15s;
+  }
+  .secnav a:hover{color:var(--blue-deep);border-color:var(--blue);transform:translateY(-1px)}
+
+  /* wave divider */
+  .wave{display:block;width:100%;height:34px;margin:14px 0 6px;color:var(--mint);opacity:.7}
+
+  /* ---------- sections ---------- */
+  main{padding-bottom:10px}
+  .sec{
+    margin:34px 0;border-left:3px solid var(--sec-c);
+    background:var(--sec-bg);border-radius:0 12px 12px 0;
+    padding:20px 22px 22px;
+  }
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .sec-no{
+    font-size:12px;font-weight:800;letter-spacing:1px;color:var(--sec-c);
+    border:1.5px solid var(--sec-c);border-radius:6px;padding:1px 7px;line-height:1.5;
+  }
+  .sec-head h2{font-size:19px;font-weight:800;letter-spacing:.5px;line-height:1.4}
+  .sec-pill{
+    margin-left:auto;font-size:11.5px;font-weight:700;letter-spacing:1px;
+    color:var(--sec-c);background:#fff;border:1px solid var(--sec-c);border-radius:999px;padding:2px 10px;
+  }
+  .sec ol{list-style:none;counter-reset:item}
+  .sec ol li{
+    counter-increment:item;position:relative;padding-left:30px;margin:10px 0;
+    font-size:14.5px;
+  }
+  .sec ol li::before{
+    content:counter(item);
+    position:absolute;left:0;top:3px;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--sec-c);color:#fff;
+    font-size:11.5px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .sec-note{
+    font-size:13px;background:#fff;border:1px dashed var(--sec-c);border-radius:8px;
+    padding:8px 13px;margin-bottom:12px;color:var(--ink-soft);
+  }
+  .sec-note b{color:var(--sec-c)}
+  .sec-free{--sec-c:var(--mint);--sec-bg:var(--mint-bg)}
+  .sec-welcome{--sec-c:var(--blue);--sec-bg:#e9f1fa}
+  .sec-permit{--sec-c:var(--amber);--sec-bg:var(--amber-bg)}
+  .sec-ban{--sec-c:var(--red);--sec-bg:var(--red-bg)}
+  .sec-note-sec{--sec-c:var(--slate);--sec-bg:var(--slate-bg)}
+
+  /* profile card */
+  .profile-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:18px 22px;margin:30px 0;
+  }
+  .profile-card h2{font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .profile-card h2::before{content:"";width:12px;height:12px;border-radius:4px;background:var(--blue);display:inline-block}
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+  .profile-grid .f{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:7px 2px;font-size:14.5px}
+  .profile-grid .f dt{color:var(--ink-soft);flex:0 0 auto}
+  .profile-grid .f dd{font-weight:600;text-align:right}
+
+  /* contact */
+  .contact-box{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:30px 0;
+  }
+  .contact-box h2{font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .contact-box h2::before{content:"";width:12px;height:12px;border-radius:4px;background:var(--mint);display:inline-block}
+  .contact-rows{display:grid;gap:10px;font-size:14.5px}
+  .contact-rows .r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .contact-rows .r .k{min-width:64px;color:var(--ink-soft);font-size:13px;font-weight:700;letter-spacing:1px}
+  .contact-rows .r .v{font-weight:700}
+  .contact-rows a{color:var(--blue-deep);text-decoration:none;border-bottom:1px dashed var(--blue)}
+  .contact-rows a:hover{color:var(--mint);border-color:var(--mint)}
+  .credits{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .credits span{
+    font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--ink-soft);
+  }
+  .credits span b{color:var(--ink);font-weight:600}
+
+  /* closing line */
+  .closing{
+    text-align:center;color:var(--ink-soft);font-size:14px;
+    margin:34px 0 6px;padding:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .closing strong{color:var(--ink)}
+
+  /* tips box */
+  .tips{
+    background:#20242b;color:#e8e6df;border-radius:14px;padding:24px 26px;margin:34px 0 8px;
+    position:relative;overflow:hidden;
+  }
+  .tips::before{
+    content:"";position:absolute;top:-46px;right:-46px;width:130px;height:130px;border-radius:50%;
+    background:radial-gradient(circle,rgba(36,137,111,.35),transparent 70%);
+  }
+  .tips h2{
+    font-size:16px;font-weight:800;color:#7fd8c0;letter-spacing:2px;
+    margin-bottom:16px;display:flex;align-items:center;gap:9px;
+  }
+  .tips h2::before{content:"♪";font-size:18px}
+  .tips ol{list-style:none;counter-reset:tip}
+  .tips ol li{
+    counter-increment:tip;position:relative;padding:7px 0 7px 34px;font-size:14px;line-height:1.8;
+    border-bottom:1px dashed rgba(255,255,255,.14);
+  }
+  .tips ol li:last-child{border-bottom:0}
+  .tips ol li::before{
+    content:counter(tip);
+    position:absolute;left:0;top:9px;width:22px;height:22px;border-radius:6px;
+    background:rgba(127,216,192,.16);border:1px solid #7fd8c0;color:#7fd8c0;
+    font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .tips code{
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    border-radius:5px;padding:0 6px;font-size:12.5px;color:#a7e8d5;
+  }
+
+  footer{padding:30px 0 46px;text-align:center;color:var(--ink-soft);font-size:12.5px}
+  footer .f-brand{font-weight:800;color:var(--ink);font-size:14px;letter-spacing:1px;margin-bottom:6px}
+  footer a{color:var(--blue-deep)}
+
+  /* responsive */
+  @media (max-width:560px){
+    .hero-grid{flex-direction:column;align-items:flex-start;gap:18px}
+    .hero-icon img{width:104px;height:104px}
+    .hero-info h1{font-size:28px}
+    .profile-grid{grid-template-columns:1fr}
+    .sec-pill{margin-left:0}
+    .brand small{display:none}
+    .top-actions{gap:6px}
+    .lang-switch button{padding:5px 8px;font-size:12px}
+    .btn{padding:7px 12px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="inner">
+    <div class="brand">
+      <img src="icon.png" alt="">
+      管緒リルカ <small>UTAU VOICEBANK</small>
+    </div>
+    <div class="top-actions">
+      <nav class="lang-switch" aria-label="language">
+        <button type="button" data-lang="zh" class="active">中文</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="ja">日本語</button>
+      </nav>
+      <a class="btn btn-blue" id="topdl" href="管緒リルカ.zip" download>下载音源</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== 中文 ==================== -->
+<div class="langpage" id="page-zh" data-lang="zh">
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-icon"><img src="icon.png" alt="管緒リルカ 角色头像"></div>
+        <div class="hero-info">
+          <p class="kicker">UTAU VOICEBANK</p>
+          <h1>管緒リルカ</h1>
+          <p class="sub">音源&amp;角色完整使用规约</p>
+          <ul class="hero-tags">
+            <li>14岁 · 男</li>
+            <li>小型机器狼兽人</li>
+            <li>喜好：薄荷糖</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero-dl">
+        <a class="btn btn-dl" href="管緒リルカ.zip" download>↓ 下载音源</a>
+        <p class="dl-meta">ZIP · 约 154 KB<br>内含 <code>a.wav</code> <code>character.txt</code> <code>oto.ini</code> <code>icon.bmp</code> <code>readme.txt</code></p>
+      </div>
+      <nav class="secnav">
+        <a href="#zh-free">可自由使用</a>
+        <a href="#zh-welcome">创作欢迎</a>
+        <a href="#zh-permit">需授权行为</a>
+        <a href="#zh-ban">禁止行为</a>
+        <a href="#zh-note">补充说明</a>
+        <a href="#zh-contact">联系方式</a>
+        <a href="#zh-tips">使用提示</a>
+      </nav>
+      <svg class="wave" viewBox="0 0 780 34" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="16" width="6" height="6" rx="1"/>
+        <rect x="9" y="12" width="6" height="12" rx="1"/>
+        <rect x="18" y="7" width="6" height="20" rx="1"/>
+        <rect x="27" y="11" width="6" height="14" rx="1"/>
+        <rect x="36" y="15" width="6" height="7" rx="1"/>
+        <rect x="45" y="8" width="6" height="18" rx="1"/>
+        <rect x="54" y="4" width="6" height="26" rx="1"/>
+        <rect x="63" y="10" width="6" height="15" rx="1"/>
+        <rect x="72" y="14" width="6" height="8" rx="1"/>
+        <rect x="81" y="5" width="6" height="24" rx="1"/>
+        <rect x="90" y="9" width="6" height="17" rx="1"/>
+        <rect x="99" y="13" width="6" height="10" rx="1"/>
+        <rect x="108" y="6" width="6" height="22" rx="1"/>
+        <rect x="117" y="11" width="6" height="13" rx="1"/>
+        <rect x="126" y="15" width="6" height="6" rx="1"/>
+        <rect x="135" y="8" width="6" height="18" rx="1"/>
+        <rect x="144" y="3" width="6" height="28" rx="1"/>
+        <rect x="153" y="10" width="6" height="16" rx="1"/>
+        <rect x="162" y="14" width="6" height="8" rx="1"/>
+        <rect x="171" y="7" width="6" height="21" rx="1"/>
+        <rect x="180" y="12" width="6" height="12" rx="1"/>
+        <rect x="189" y="16" width="6" height="5" rx="1"/>
+        <rect x="198" y="6" width="6" height="23" rx="1"/>
+        <rect x="207" y="10" width="6" height="15" rx="1"/>
+        <rect x="216" y="4" width="6" height="26" rx="1"/>
+        <rect x="225" y="13" width="6" height="10" rx="1"/>
+        <rect x="234" y="8" width="6" height="18" rx="1"/>
+        <rect x="243" y="15" width="6" height="7" rx="1"/>
+        <rect x="252" y="5" width="6" height="24" rx="1"/>
+        <rect x="261" y="11" width="6" height="13" rx="1"/>
+        <rect x="270" y="14" width="6" height="8" rx="1"/>
+        <rect x="279" y="7" width="6" height="21" rx="1"/>
+        <rect x="288" y="12" width="6" height="11" rx="1"/>
+        <rect x="297" y="16" width="6" height="5" rx="1"/>
+        <rect x="306" y="6" width="6" height="22" rx="1"/>
+        <rect x="315" y="10" width="6" height="16" rx="1"/>
+        <rect x="324" y="3" width="6" height="28" rx="1"/>
+        <rect x="333" y="13" width="6" height="9" rx="1"/>
+        <rect x="342" y="8" width="6" height="18" rx="1"/>
+        <rect x="351" y="15" width="6" height="7" rx="1"/>
+        <rect x="360" y="5" width="6" height="24" rx="1"/>
+        <rect x="369" y="11" width="6" height="13" rx="1"/>
+        <rect x="378" y="14" width="6" height="8" rx="1"/>
+        <rect x="387" y="7" width="6" height="21" rx="1"/>
+        <rect x="396" y="12" width="6" height="11" rx="1"/>
+        <rect x="405" y="16" width="6" height="5" rx="1"/>
+        <rect x="414" y="6" width="6" height="22" rx="1"/>
+        <rect x="423" y="10" width="6" height="16" rx="1"/>
+        <rect x="432" y="4" width="6" height="26" rx="1"/>
+        <rect x="441" y="13" width="6" height="9" rx="1"/>
+        <rect x="450" y="8" width="6" height="18" rx="1"/>
+        <rect x="459" y="15" width="6" height="7" rx="1"/>
+        <rect x="468" y="5" width="6" height="24" rx="1"/>
+        <rect x="477" y="11" width="6" height="13" rx="1"/>
+        <rect x="486" y="14" width="6" height="8" rx="1"/>
+        <rect x="495" y="7" width="6" height="21" rx="1"/>
+        <rect x="504" y="12" width="6" height="11" rx="1"/>
+        <rect x="513" y="16" width="6" height="5" rx="1"/>
+        <rect x="522" y="6" width="6" height="22" rx="1"/>
+        <rect x="531" y="10" width="6" height="16" rx="1"/>
+        <rect x="540" y="3" width="6" height="28" rx="1"/>
+        <rect x="549" y="13" width="6" height="9" rx="1"/>
+        <rect x="558" y="8" width="6" height="18" rx="1"/>
+        <rect x="567" y="15" width="6" height="7" rx="1"/>
+        <rect x="576" y="5" width="6" height="24" rx="1"/>
+        <rect x="585" y="11" width="6" height="13" rx="1"/>
+        <rect x="594" y="14" width="6" height="8" rx="1"/>
+        <rect x="603" y="7" width="6" height="21" rx="1"/>
+        <rect x="612" y="12" width="6" height="11" rx="1"/>
+        <rect x="621" y="16" width="6" height="5" rx="1"/>
+        <rect x="630" y="6" width="6" height="22" rx="1"/>
+        <rect x="639" y="10" width="6" height="16" rx="1"/>
+        <rect x="648" y="4" width="6" height="26" rx="1"/>
+        <rect x="657" y="13" width="6" height="9" rx="1"/>
+        <rect x="666" y="8" width="6" height="18" rx="1"/>
+        <rect x="675" y="15" width="6" height="7" rx="1"/>
+        <rect x="684" y="5" width="6" height="24" rx="1"/>
+        <rect x="693" y="11" width="6" height="13" rx="1"/>
+        <rect x="702" y="14" width="6" height="8" rx="1"/>
+        <rect x="711" y="7" width="6" height="21" rx="1"/>
+        <rect x="720" y="12" width="6" height="11" rx="1"/>
+        <rect x="729" y="16" width="6" height="5" rx="1"/>
+        <rect x="738" y="6" width="6" height="22" rx="1"/>
+        <rect x="747" y="10" width="6" height="16" rx="1"/>
+        <rect x="756" y="4" width="6" height="26" rx="1"/>
+        <rect x="765" y="13" width="6" height="9" rx="1"/>
+        <rect x="774" y="8" width="6" height="18" rx="1"/>
+      </svg>
+    </section>
+
+    <main>
+      <!-- 角色档案 -->
+      <section class="profile-card">
+        <h2>角色档案</h2>
+        <dl class="profile-grid">
+          <div class="f"><dt>姓名</dt><dd>管緒リルカ</dd></div>
+          <div class="f"><dt>年龄</dt><dd>14岁</dd></div>
+          <div class="f"><dt>性别</dt><dd>男</dd></div>
+          <div class="f"><dt>种族</dt><dd>小型机器狼兽人</dd></div>
+          <div class="f"><dt>喜好</dt><dd>薄荷糖</dd></div>
+        </dl>
+      </section>
+
+      <section class="sec sec-free" id="zh-free">
+        <div class="sec-head">
+          <span class="sec-no">01</span><h2>可自由使用范围（无需提前联络音源管理者）</h2>
+          <span class="sec-pill">自由</span>
+        </div>
+        <ol>
+          <li>用户可以自由创作、发布管緒リルカ的各类二次创作作品，包括但不限于音乐PV、插画、漫画、短篇故事等，同时可以公开分享该角色相关的衍生资料。</li>
+          <li>仅限个人学习、音源调试的私人用途，使用者能够对音源文件进行修改调整，其中包含oto‑ini参数编辑、音频采样修剪、各类音频参数校正，仅允许在本地个人设备保存使用。</li>
+          <li>允许创作带有轻度战斗场面、少量流血表现等低烈度冲突内容的二创作品，请勿制作过度血腥的画面。</li>
+          <li>在二次创作当中可以对角色外观进行改动：更换角色服饰、调整角色年龄设定、设计不同的兽人形态变体等，丰富角色的创作可能性。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-welcome" id="zh-welcome">
+        <div class="sec-head">
+          <span class="sec-no">02</span><h2>创作欢迎事项</h2>
+          <span class="sec-pill">欢迎</span>
+        </div>
+        <ol>
+          <li>欢迎大家使用本音源制作积极向上、传递正能量的各类内容。</li>
+          <li>非常欢迎为本音源谱写、制作各式各样的歌曲，无论是流行、古风、摇滚、电子、抒情等曲风都十分期待。</li>
+          <li>欢迎绘制角色插画、漫画、小故事，挖掘角色的性格与世界观，丰富角色的同人生态。</li>
+          <li>鼓励大家进行音源调校练习，多多尝试不同的调音风格，发掘这份声库更多音色可能性。</li>
+          <li>欢迎制作PV、手书、动画短片等多媒体作品，赋予管緒リルカ更多生动的演绎。</li>
+          <li>可以制作剧情向、叙事向音乐作品，去描绘属于这个机器狼少年的故事。</li>
+          <li>欢迎分享你的调音心得、工程示例（未经许可不可公开发布修改后的oto文件），和同好互相交流学习。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-permit" id="zh-permit">
+        <div class="sec-head">
+          <span class="sec-no">03</span><h2>需要提前取得音源管理者授权后方可开展的行为</h2>
+          <span class="sec-pill">需授权</span>
+        </div>
+        <p class="sec-note"><b>注：</b>平台管理员、社团管理员若需要开展相关活动，同样需要向音源作者提交申请获取许可。</p>
+        <ol>
+          <li>所有线下同人展会、线下同人相关活动，以及全部商业用途行为，无论该行为是否产生盈利收益，都必须事先向音源管理者提交申请，拿到正式授权之后才能够实施。</li>
+          <li>一切和Cosplay相关的活动，涵盖角色服装的设计、制作、实物贩售、线下出镜扮演等全部相关行为，均需要获取管理者许可。</li>
+          <li>使用本角色形象制作虚拟主播皮套，进行角色扮演直播、虚拟演绎等相关活动，必须提前申请授权。</li>
+          <li>如果创作内容包含死亡情节、重口味猎奇画面、猎奇向人外化描写，在对外发布作品的时候，务必添加醒目清晰的内容警示标签，做好内容分级提示，防止对不知情的观众造成心理不适。</li>
+          <li>当你修改完成oto.ini配置文件之后，如果计划对外公开配布这份经过修改的配置文件，必须主动向原作者提交申请，在收到明确许可之后，才可以公开发布你的修改版本。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-ban" id="zh-ban">
+        <div class="sec-head">
+          <span class="sec-no">04</span><h2>明确禁止进行的行为</h2>
+          <span class="sec-pill">禁止</span>
+        </div>
+        <ol>
+          <li>在没有获得许可的情况下，不允许私自转发、二次分发整套音源文件；仅存在唯一特殊例外：原版音源已经完全无法获取，并且音源管理者本人明确同意，才允许进行二次配布。</li>
+          <li>禁止将该音源应用于政治宣传、宗教布教传教相关的一切内容创作。</li>
+          <li>不可以挪用管緒リルカ的音源，直接将这份声音素材充当其他全新原创角色的配音来使用。</li>
+          <li>禁止制作CP配对、恋爱主题的各类二创内容，该角色官方感情线全部归属于原作者设定，他人不可进行相关创作。</li>
+          <li>严禁修改、裁剪、篡改官方发布的原版角色头像插画，不可以对官方头像进行二次加工改写。</li>
+          <li>禁止制作低俗、恶意引战、宣扬暴力、歧视他人等不良导向内容。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-note-sec" id="zh-note">
+        <div class="sec-head">
+          <span class="sec-no">05</span><h2>补充说明</h2>
+          <span class="sec-pill">补充</span>
+        </div>
+        <ol>
+          <li>在公开发布使用该音源产出的作品时，请务必在标题、简介等醒目位置标注音源名称：管緒リルカ。</li>
+          <li>如果创作当中需要引用其他人产出的二次创作素材，一定要提前取得对应原作者的同意，不可擅自挪用他人作品。</li>
+          <li>本套角色设定仅供创作者作为创作参考使用，角色感情线设定、官方头像设定不允许改动，除此之外其余角色细节，创作者可以根据自身作品剧情灵活调整。</li>
+        </ol>
+      </section>
+
+      <section class="contact-box" id="zh-contact">
+        <h2>联系方式</h2>
+        <div class="contact-rows">
+          <div class="r"><span class="k">QQ</span><span class="v">3786033638</span></div>
+          <div class="r"><span class="k">邮件</span><a class="v" href="mailto:3786033638@qq.com">3786033638@qq.com</a></div>
+        </div>
+        <div class="credits">
+          <span>原音修正 <b>你们</b></span>
+          <span>音源采样 <b>弦音ハルカ</b></span>
+          <span>音源管理 <b>弦音ハルカ</b></span>
+        </div>
+      </section>
+
+      <p class="closing"><strong>欢迎使用此音源进行创作。</strong><br>本使用条款已经告知使用者该如何正确使用该音源，如有任何法律纠纷均由使用者承担。</p>
+
+      <section class="tips" id="zh-tips">
+        <h2>温馨提示</h2>
+        <ol>
+          <li>本声库仅允许使用默认歌词 <code>a</code>，不可以输入其他任何歌词，输入别的内容音源无法正常发声。</li>
+          <li>声库全部配置文件（<code>character.txt</code>、<code>oto.ini</code>、<code>readme.txt</code>）编码必须选择 Chinese Simplified(GB2312)，参照截图示例；编码选错会直接出现乱码，声库读取失败。</li>
+          <li>OpenUTAU音素器设置：语言选择日语，音素器选用 <code>[JA VCV] Japanese VCV Phonemizer (legacy)</code>，音素器选错音源不会输出声音。</li>
+          <li>使用本音源，请严格遵守上方全部使用条约规范。</li>
+          <li>祝您使用顺利！</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p class="f-brand">管緒リルカ · Kansuo Riruka</p>
+      <p>UTAU Voicebank &amp; Character Usage Terms · 弦音ハルカ</p>
+      <p>如有疑问请联系 QQ: 3786033638 / 3786033638@qq.com</p>
+    </footer>
+  </div>
+</div>
+
+<!-- ==================== English ==================== -->
+<div class="langpage" id="page-en" data-lang="en" hidden>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-icon"><img src="icon.png" alt="Kansuo Riruka avatar"></div>
+        <div class="hero-info">
+          <p class="kicker">UTAU VOICEBANK</p>
+          <h1>Kansuo Riruka</h1>
+          <p class="sub">Voicebank &amp; Character Terms of Use</p>
+          <ul class="hero-tags">
+            <li>Age 14 · Male</li>
+            <li>Small machine‑wolf beastman</li>
+            <li>Likes: Peppermint candy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero-dl">
+        <a class="btn btn-dl" href="管緒リルカ.zip" download>↓ Download Voicebank</a>
+        <p class="dl-meta">ZIP · about 154 KB<br>Includes <code>a.wav</code> <code>character.txt</code> <code>oto.ini</code> <code>icon.bmp</code> <code>readme.txt</code></p>
+      </div>
+      <nav class="secnav">
+        <a href="#en-free">Permitted</a>
+        <a href="#en-welcome">Welcome</a>
+        <a href="#en-permit">Permission</a>
+        <a href="#en-ban">Prohibited</a>
+        <a href="#en-note">Notes</a>
+        <a href="#en-contact">Contact</a>
+        <a href="#en-tips">Tips</a>
+      </nav>
+      <svg class="wave" viewBox="0 0 780 34" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="16" width="6" height="6" rx="1"/><rect x="9" y="12" width="6" height="12" rx="1"/><rect x="18" y="7" width="6" height="20" rx="1"/><rect x="27" y="11" width="6" height="14" rx="1"/><rect x="36" y="15" width="6" height="7" rx="1"/><rect x="45" y="8" width="6" height="18" rx="1"/><rect x="54" y="4" width="6" height="26" rx="1"/><rect x="63" y="10" width="6" height="15" rx="1"/><rect x="72" y="14" width="6" height="8" rx="1"/><rect x="81" y="5" width="6" height="24" rx="1"/><rect x="90" y="9" width="6" height="17" rx="1"/><rect x="99" y="13" width="6" height="10" rx="1"/><rect x="108" y="6" width="6" height="22" rx="1"/><rect x="117" y="11" width="6" height="13" rx="1"/><rect x="126" y="15" width="6" height="6" rx="1"/><rect x="135" y="8" width="6" height="18" rx="1"/><rect x="144" y="3" width="6" height="28" rx="1"/><rect x="153" y="10" width="6" height="16" rx="1"/><rect x="162" y="14" width="6" height="8" rx="1"/><rect x="171" y="7" width="6" height="21" rx="1"/><rect x="180" y="12" width="6" height="12" rx="1"/><rect x="189" y="16" width="6" height="5" rx="1"/><rect x="198" y="6" width="6" height="23" rx="1"/><rect x="207" y="10" width="6" height="15" rx="1"/><rect x="216" y="4" width="6" height="26" rx="1"/><rect x="225" y="13" width="6" height="10" rx="1"/><rect x="234" y="8" width="6" height="18" rx="1"/><rect x="243" y="15" width="6" height="7" rx="1"/><rect x="252" y="5" width="6" height="24" rx="1"/><rect x="261" y="11" width="6" height="13" rx="1"/><rect x="270" y="14" width="6" height="8" rx="1"/><rect x="279" y="7" width="6" height="21" rx="1"/><rect x="288" y="12" width="6" height="11" rx="1"/><rect x="297" y="16" width="6" height="5" rx="1"/><rect x="306" y="6" width="6" height="22" rx="1"/><rect x="315" y="10" width="6" height="16" rx="1"/><rect x="324" y="3" width="6" height="28" rx="1"/><rect x="333" y="13" width="6" height="9" rx="1"/><rect x="342" y="8" width="6" height="18" rx="1"/><rect x="351" y="15" width="6" height="7" rx="1"/><rect x="360" y="5" width="6" height="24" rx="1"/><rect x="369" y="11" width="6" height="13" rx="1"/><rect x="378" y="14" width="6" height="8" rx="1"/><rect x="387" y="7" width="6" height="21" rx="1"/><rect x="396" y="12" width="6" height="11" rx="1"/><rect x="405" y="16" width="6" height="5" rx="1"/><rect x="414" y="6" width="6" height="22" rx="1"/><rect x="423" y="10" width="6" height="16" rx="1"/><rect x="432" y="4" width="6" height="26" rx="1"/><rect x="441" y="13" width="6" height="9" rx="1"/><rect x="450" y="8" width="6" height="18" rx="1"/><rect x="459" y="15" width="6" height="7" rx="1"/><rect x="468" y="5" width="6" height="24" rx="1"/><rect x="477" y="11" width="6" height="13" rx="1"/><rect x="486" y="14" width="6" height="8" rx="1"/><rect x="495" y="7" width="6" height="21" rx="1"/><rect x="504" y="12" width="6" height="11" rx="1"/><rect x="513" y="16" width="6" height="5" rx="1"/><rect x="522" y="6" width="6" height="22" rx="1"/><rect x="531" y="10" width="6" height="16" rx="1"/><rect x="540" y="3" width="6" height="28" rx="1"/><rect x="549" y="13" width="6" height="9" rx="1"/><rect x="558" y="8" width="6" height="18" rx="1"/><rect x="567" y="15" width="6" height="7" rx="1"/><rect x="576" y="5" width="6" height="24" rx="1"/><rect x="585" y="11" width="6" height="13" rx="1"/><rect x="594" y="14" width="6" height="8" rx="1"/><rect x="603" y="7" width="6" height="21" rx="1"/><rect x="612" y="12" width="6" height="11" rx="1"/><rect x="621" y="16" width="6" height="5" rx="1"/><rect x="630" y="6" width="6" height="22" rx="1"/><rect x="639" y="10" width="6" height="16" rx="1"/><rect x="648" y="4" width="6" height="26" rx="1"/><rect x="657" y="13" width="6" height="9" rx="1"/><rect x="666" y="8" width="6" height="18" rx="1"/><rect x="675" y="15" width="6" height="7" rx="1"/><rect x="684" y="5" width="6" height="24" rx="1"/><rect x="693" y="11" width="6" height="13" rx="1"/><rect x="702" y="14" width="6" height="8" rx="1"/><rect x="711" y="7" width="6" height="21" rx="1"/><rect x="720" y="12" width="6" height="11" rx="1"/><rect x="729" y="16" width="6" height="5" rx="1"/><rect x="738" y="6" width="6" height="22" rx="1"/><rect x="747" y="10" width="6" height="16" rx="1"/><rect x="756" y="4" width="6" height="26" rx="1"/><rect x="765" y="13" width="6" height="9" rx="1"/><rect x="774" y="8" width="6" height="18" rx="1"/>
+      </svg>
+    </section>
+
+    <main>
+      <section class="profile-card">
+        <h2>Character Profile</h2>
+        <dl class="profile-grid">
+          <div class="f"><dt>Name</dt><dd>Kansuo Riruka</dd></div>
+          <div class="f"><dt>Age</dt><dd>14</dd></div>
+          <div class="f"><dt>Gender</dt><dd>Male</dd></div>
+          <div class="f"><dt>Race</dt><dd>Small machine‑wolf beastman</dd></div>
+          <div class="f"><dt>Likes</dt><dd>Peppermint candy</dd></div>
+        </dl>
+      </section>
+
+      <section class="sec sec-free" id="en-free">
+        <div class="sec-head">
+          <span class="sec-no">01</span><h2>Permitted Actions</h2>
+          <span class="sec-pill">Free</span>
+        </div>
+        <p class="sec-note"><b>No prior contact with the bank administrator required.</b></p>
+        <ol>
+          <li>Users are free to create and publish various fan‑works of Kansuo Riruka, including music PVs, illustrations, comics, short stories and more. Derivative materials related to this character may also be shared publicly.</li>
+          <li>For personal study and voicebank tuning only, users may adjust local voicebank files, such as editing oto‑ini parameters, trimming samples and calibrating audio settings. Modified files can only be stored locally for private use.</li>
+          <li>Fan‑works containing mild combat scenes and minor blood depictions are permitted. Excessively gory visuals should be avoided.</li>
+          <li>You may adjust the character’s appearance in fan‑works, including costume changes, age adjustments, and alternative beast‑form variants to enrich your creative output.</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-welcome" id="en-welcome">
+        <div class="sec-head">
+          <span class="sec-no">02</span><h2>Creation Welcome Notes</h2>
+          <span class="sec-pill">Welcome</span>
+        </div>
+        <ol>
+          <li>You are welcome to create positive and uplifting content with this voicebank.</li>
+          <li>We highly encourage song production for this voicebank, pop, ballad, rock, electronic and all music genres are welcomed.</li>
+          <li>Feel free to draw illustrations, comics and short stories to expand the character’s world‑building.</li>
+          <li>Tune and experiment with different vocal styles to explore the full potential of this voicebank.</li>
+          <li>PVs, hand‑drawn animations and short multimedia videos are warmly welcomed.</li>
+          <li>Narrative and story‑driven music works about this machine‑wolf boy are encouraged.</li>
+          <li>You may share your tuning experience with other creators, but modified oto.ini shall not be shared publicly without permission.</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-permit" id="en-permit">
+        <div class="sec-head">
+          <span class="sec-no">03</span><h2>Actions Requiring Prior Written Permission From Administrator</h2>
+          <span class="sec-pill">Permission</span>
+        </div>
+        <p class="sec-note"><b>Note:</b> Platform administrators and community administrators shall also apply for permission from the voicebank author before relevant usage.</p>
+        <ol>
+          <li>All offline doujin events and any form of commercial usage, whether profit‑making or non‑profit, must receive official authorization from the bank administrator before implementation.</li>
+          <li>All cosplay‑related activities, including costume designing, production, selling and public performance, require prior permission.</li>
+          <li>Any virtual‑youtuber streaming or virtual performance that role‑plays this character with custom avatar assets must apply for authorization in advance.</li>
+          <li>If your work includes depictions of death, heavy grotesque themes or uncanny beast‑human transformation, prominent content warning labels must be added upon release to avoid psychological distress for unprepared audiences.</li>
+          <li>If you intend to publicly distribute your self‑modified oto.ini configuration file after tuning, you must submit an application to the original author and wait for explicit approval before public release.</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-ban" id="en-ban">
+        <div class="sec-head">
+          <span class="sec-no">04</span><h2>Prohibited Actions</h2>
+          <span class="sec-pill">Prohibited</span>
+        </div>
+        <ol>
+          <li>Unauthorized redistribution of the full voicebank is forbidden. The sole exception applies when the original voicebank is completely unavailable and the bank administrator gives explicit consent.</li>
+          <li>This voicebank shall not be used for political propaganda or religious proselytizing of any kind.</li>
+          <li>Do not repurpose this voicebank as voice asset for other original characters.</li>
+          <li>Shipping and romantic‑themed fan‑content are strictly prohibited. Official romantic storylines are reserved exclusively for the original creator.</li>
+          <li>Do not edit, crop or alter the official original character avatar artwork. Modification or re‑editing of official avatar art is not allowed.</li>
+          <li>Content involving obscenity, harassment, hate speech, violence and discrimination is strictly forbidden.</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-note-sec" id="en-note">
+        <div class="sec-head">
+          <span class="sec-no">05</span><h2>Additional Notes</h2>
+          <span class="sec-pill">Notes</span>
+        </div>
+        <ol>
+          <li>When releasing works made with this voicebank, please clearly credit the voicebank name “Kansuo Riruka” in visible areas such as title or description.</li>
+          <li>Always obtain permission from respective creators before incorporating third‑party fan‑made resources into your work.</li>
+          <li>Character settings serve only as creative reference. Romance settings and official avatar artwork cannot be altered. Other character details can be adjusted freely to fit your story.</li>
+        </ol>
+      </section>
+
+      <section class="contact-box" id="en-contact">
+        <h2>Contact</h2>
+        <div class="contact-rows">
+          <div class="r"><span class="k">QQ</span><span class="v">3786033638</span></div>
+          <div class="r"><span class="k">E‑mail</span><a class="v" href="mailto:3786033638@qq.com">3786033638@qq.com</a></div>
+        </div>
+        <div class="credits">
+          <span>Oto Editing <b>You</b></span>
+          <span>Voice Sampling <b>Haruka Tsurine</b></span>
+          <span>Bank Administrator <b>Haruka Tsurine</b></span>
+        </div>
+      </section>
+
+      <p class="closing"><strong>Welcome to create works with this voicebank.</strong><br>These terms inform users of the proper way to use this voicebank. Any legal disputes arising from misuse shall be borne solely by the user.</p>
+
+      <section class="tips" id="en-tips">
+        <h2>Tips</h2>
+        <ol>
+          <li>Only the default lyric <code>a</code> is available for this voicebank. No other lyrics are allowed, or the voicebank will fail to produce sound.</li>
+          <li>All configuration files of this voicebank (<code>character.txt</code>, <code>oto.ini</code>, <code>readme.txt</code>) must be encoded with Chinese Simplified (GB2312) as shown in the screenshot. Wrong encoding will cause garbled text and make the voicebank unreadable.</li>
+          <li>OpenUTAU Phonemizer settings: select language Japanese, and choose <code>[JA VCV] Japanese VCV Phonemizer (legacy)</code>. Wrong phonemizer selection will result in no audio output.</li>
+          <li>Please use this voicebank in strict accordance with all usage rules stated above.</li>
+          <li>Wish you a pleasant creation!</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p class="f-brand">Kansuo Riruka</p>
+      <p>UTAU Voicebank &amp; Character Usage Terms · Haruka Tsurine</p>
+      <p>For inquiries: QQ 3786033638 / 3786033638@qq.com</p>
+    </footer>
+  </div>
+</div>
+
+<!-- ==================== 日本語 ==================== -->
+<div class="langpage" id="page-ja" data-lang="ja" hidden>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-icon"><img src="icon.png" alt="管緒リルカ キャラクターアイコン"></div>
+        <div class="hero-info">
+          <p class="kicker">UTAU VOICEBANK</p>
+          <h1>管緒リルカ</h1>
+          <p class="sub">音源＆キャラクター利用規約</p>
+          <ul class="hero-tags">
+            <li>14歳 · 男性</li>
+            <li>小型機械オオカミ獣人</li>
+            <li>好きなもの：ミントキャンディ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero-dl">
+        <a class="btn btn-dl" href="管緒リルカ.zip" download>↓ 音源をダウンロード</a>
+        <p class="dl-meta">ZIP · 約 154 KB<br>収録 <code>a.wav</code> <code>character.txt</code> <code>oto.ini</code> <code>icon.bmp</code> <code>readme.txt</code></p>
+      </div>
+      <nav class="secnav">
+        <a href="#ja-free">自由利用</a>
+        <a href="#ja-welcome">創作歓迎</a>
+        <a href="#ja-permit">要許可</a>
+        <a href="#ja-ban">禁止行為</a>
+        <a href="#ja-note">補足</a>
+        <a href="#ja-contact">連絡先</a>
+        <a href="#ja-tips">ヒント</a>
+      </nav>
+      <svg class="wave" viewBox="0 0 780 34" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="16" width="6" height="6" rx="1"/><rect x="9" y="12" width="6" height="12" rx="1"/><rect x="18" y="7" width="6" height="20" rx="1"/><rect x="27" y="11" width="6" height="14" rx="1"/><rect x="36" y="15" width="6" height="7" rx="1"/><rect x="45" y="8" width="6" height="18" rx="1"/><rect x="54" y="4" width="6" height="26" rx="1"/><rect x="63" y="10" width="6" height="15" rx="1"/><rect x="72" y="14" width="6" height="8" rx="1"/><rect x="81" y="5" width="6" height="24" rx="1"/><rect x="90" y="9" width="6" height="17" rx="1"/><rect x="99" y="13" width="6" height="10" rx="1"/><rect x="108" y="6" width="6" height="22" rx="1"/><rect x="117" y="11" width="6" height="13" rx="1"/><rect x="126" y="15" width="6" height="6" rx="1"/><rect x="135" y="8" width="6" height="18" rx="1"/><rect x="144" y="3" width="6" height="28" rx="1"/><rect x="153" y="10" width="6" height="16" rx="1"/><rect x="162" y="14" width="6" height="8" rx="1"/><rect x="171" y="7" width="6" height="21" rx="1"/><rect x="180" y="12" width="6" height="12" rx="1"/><rect x="189" y="16" width="6" height="5" rx="1"/><rect x="198" y="6" width="6" height="23" rx="1"/><rect x="207" y="10" width="6" height="15" rx="1"/><rect x="216" y="4" width="6" height="26" rx="1"/><rect x="225" y="13" width="6" height="10" rx="1"/><rect x="234" y="8" width="6" height="18" rx="1"/><rect x="243" y="15" width="6" height="7" rx="1"/><rect x="252" y="5" width="6" height="24" rx="1"/><rect x="261" y="11" width="6" height="13" rx="1"/><rect x="270" y="14" width="6" height="8" rx="1"/><rect x="279" y="7" width="6" height="21" rx="1"/><rect x="288" y="12" width="6" height="11" rx="1"/><rect x="297" y="16" width="6" height="5" rx="1"/><rect x="306" y="6" width="6" height="22" rx="1"/><rect x="315" y="10" width="6" height="16" rx="1"/><rect x="324" y="3" width="6" height="28" rx="1"/><rect x="333" y="13" width="6" height="9" rx="1"/><rect x="342" y="8" width="6" height="18" rx="1"/><rect x="351" y="15" width="6" height="7" rx="1"/><rect x="360" y="5" width="6" height="24" rx="1"/><rect x="369" y="11" width="6" height="13" rx="1"/><rect x="378" y="14" width="6" height="8" rx="1"/><rect x="387" y="7" width="6" height="21" rx="1"/><rect x="396" y="12" width="6" height="11" rx="1"/><rect x="405" y="16" width="6" height="5" rx="1"/><rect x="414" y="6" width="6" height="22" rx="1"/><rect x="423" y="10" width="6" height="16" rx="1"/><rect x="432" y="4" width="6" height="26" rx="1"/><rect x="441" y="13" width="6" height="9" rx="1"/><rect x="450" y="8" width="6" height="18" rx="1"/><rect x="459" y="15" width="6" height="7" rx="1"/><rect x="468" y="5" width="6" height="24" rx="1"/><rect x="477" y="11" width="6" height="13" rx="1"/><rect x="486" y="14" width="6" height="8" rx="1"/><rect x="495" y="7" width="6" height="21" rx="1"/><rect x="504" y="12" width="6" height="11" rx="1"/><rect x="513" y="16" width="6" height="5" rx="1"/><rect x="522" y="6" width="6" height="22" rx="1"/><rect x="531" y="10" width="6" height="16" rx="1"/><rect x="540" y="3" width="6" height="28" rx="1"/><rect x="549" y="13" width="6" height="9" rx="1"/><rect x="558" y="8" width="6" height="18" rx="1"/><rect x="567" y="15" width="6" height="7" rx="1"/><rect x="576" y="5" width="6" height="24" rx="1"/><rect x="585" y="11" width="6" height="13" rx="1"/><rect x="594" y="14" width="6" height="8" rx="1"/><rect x="603" y="7" width="6" height="21" rx="1"/><rect x="612" y="12" width="6" height="11" rx="1"/><rect x="621" y="16" width="6" height="5" rx="1"/><rect x="630" y="6" width="6" height="22" rx="1"/><rect x="639" y="10" width="6" height="16" rx="1"/><rect x="648" y="4" width="6" height="26" rx="1"/><rect x="657" y="13" width="6" height="9" rx="1"/><rect x="666" y="8" width="6" height="18" rx="1"/><rect x="675" y="15" width="6" height="7" rx="1"/><rect x="684" y="5" width="6" height="24" rx="1"/><rect x="693" y="11" width="6" height="13" rx="1"/><rect x="702" y="14" width="6" height="8" rx="1"/><rect x="711" y="7" width="6" height="21" rx="1"/><rect x="720" y="12" width="6" height="11" rx="1"/><rect x="729" y="16" width="6" height="5" rx="1"/><rect x="738" y="6" width="6" height="22" rx="1"/><rect x="747" y="10" width="6" height="16" rx="1"/><rect x="756" y="4" width="6" height="26" rx="1"/><rect x="765" y="13" width="6" height="9" rx="1"/><rect x="774" y="8" width="6" height="18" rx="1"/>
+      </svg>
+    </section>
+
+    <main>
+      <section class="profile-card">
+        <h2>キャラクター設定</h2>
+        <dl class="profile-grid">
+          <div class="f"><dt>名前</dt><dd>管緒リルカ</dd></div>
+          <div class="f"><dt>年齢</dt><dd>14歳</dd></div>
+          <div class="f"><dt>性別</dt><dd>男性</dd></div>
+          <div class="f"><dt>種族</dt><dd>小型機械オオカミ獣人</dd></div>
+          <div class="f"><dt>好きなもの</dt><dd>ミントキャンディ</dd></div>
+        </dl>
+      </section>
+
+      <section class="sec sec-free" id="ja-free">
+        <div class="sec-head">
+          <span class="sec-no">01</span><h2>管理者に連絡不要で実行可能な行為</h2>
+          <span class="sec-pill">自由</span>
+        </div>
+        <ol>
+          <li>ユーザーはPV、イラスト、漫画、短編小説など、管緒リルカの各種二次創作を自由に制作・公開できます。キャラクターに関する派生資料も公開共有可能です。</li>
+          <li>個人の学習、音源調整を目的とする場合に限り、ローカルの音源ファイルを編集できます。oto‑iniのパラメータ修正、サンプルのトリミング、オーディオ補正などが含まれ、改変ファイルは個人端末内でのみ保存してください。</li>
+          <li>軽度な戦闘シーン、少量の流血表現を含む二次創作は許可されます。過激なグロ表現は避けてください。</li>
+          <li>二次創作において衣装変更、年齢設定の調整、獣人態の別バージョン作成など、キャラクター外見のアレンジを行うことができ、創作の幅を広げられます。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-welcome" id="ja-welcome">
+        <div class="sec-head">
+          <span class="sec-no">02</span><h2>創作歓迎事項</h2>
+          <span class="sec-pill">歓迎</span>
+        </div>
+        <ol>
+          <li>前向きで良いメッセージを持った作品の制作を歓迎いたします。</li>
+          <li>本音源での楽曲制作を大歓迎します。ポップ、バラード、ロック、エレクトロなどジャンルを問わず期待しています。</li>
+          <li>イラスト、漫画、短編物語を作成し、キャラクターの世界観を広げてください。</li>
+          <li>様々な調声スタイルに挑戦し、音源の新たな可能性を引き出す練習を推奨します。</li>
+          <li>PV、手書きアニメ、ショートムービーなどマルチメディア作品の制作も歓迎します。</li>
+          <li>この機械オオカミ少年を描いた物語性のある楽曲の制作を応援します。</li>
+          <li>調声のノウハウを同好と共有することを推奨します。ただし許可なしに改変oto.iniを公開配布してはいけません。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-permit" id="ja-permit">
+        <div class="sec-head">
+          <span class="sec-no">03</span><h2>事前に管理者の許可を取得する必要がある行為</h2>
+          <span class="sec-pill">要許可</span>
+        </div>
+        <p class="sec-note"><b>備考：</b>プラットフォーム管理者・サークル管理者が利用する場合も、音源作者へ申請を行い許可を得る必要があります。</p>
+        <ol>
+          <li>オフライン同人イベント、あらゆる商業利用については、営利・非営利に関わらず、事前に管理者へ申請を行い正式な許可を得た上で実施してください。</li>
+          <li>衣装のデザイン、制作、販売、実際のコスプレ出演など、コスプレに関するすべての行為に許可が必要です。</li>
+          <li>本キャラクターを模したVtuberの皮膚を作成し、なりきり配信やバーチャル演技を行う場合は事前に申請し許可を受けてください。</li>
+          <li>死亡描写、過激なグロテスク表現、猎奇的な人外化描写を含む作品を公開する際は、必ず目立つ注意喚起ラベルを付け、知らない視聴者に精神的負担を与えないよう配慮してください。</li>
+          <li>修正済みのoto.iniファイルを外部へ配布したい場合、必ず原作者に申請し、明確な許可を受けてから公開してください。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-ban" id="ja-ban">
+        <div class="sec-head">
+          <span class="sec-no">04</span><h2>禁止行為</h2>
+          <span class="sec-pill">禁止</span>
+        </div>
+        <ol>
+          <li>無断で音源一式を再配布することを禁じます。例外は、元音源が完全に入手不可能になり、かつ音源管理者本人が明示的に許可した場合のみです。</li>
+          <li>政治宣伝、宗教布教を目的として本音源を使用してはいけません。</li>
+          <li>管緒リルカの音源を、別のオリジナルキャラクターのボイス素材として流用しないでください。</li>
+          <li>CP、恋愛をテーマにした二次創作は一切禁止します。キャラクターの恋愛設定は原作者が独占的に管理します。</li>
+          <li>公式公開済みのキャラクターアバターイラストの加工、トリミング、改変を行ってはいけません。</li>
+          <li>低俗、誹謗中傷、暴力、差別を含む作品の制作を固く禁じます。</li>
+        </ol>
+      </section>
+
+      <section class="sec sec-note-sec" id="ja-note">
+        <div class="sec-head">
+          <span class="sec-no">05</span><h2>補足</h2>
+          <span class="sec-pill">補足</span>
+        </div>
+        <ol>
+          <li>本音源を使用し制作した作品を公開する時は、タイトルや概要欄など目につきやすい場所に音源名「管緒リルカ」を表記してください。</li>
+          <li>第三者の二次創作物を自身の作品に利用する場合は、事前に該当作者の許可を取得し、無断転用をしないでください。</li>
+          <li>キャラクター設定は創作の参考資料に過ぎません。恋愛設定と公式アバターイラストは改変不可、それ以外の細かい設定は物語に合わせて自由に調整できます。</li>
+        </ol>
+      </section>
+
+      <section class="contact-box" id="ja-contact">
+        <h2>連絡先</h2>
+        <div class="contact-rows">
+          <div class="r"><span class="k">QQ</span><span class="v">3786033638</span></div>
+          <div class="r"><span class="k">メール</span><a class="v" href="mailto:3786033638@qq.com">3786033638@qq.com</a></div>
+        </div>
+        <div class="credits">
+          <span>原音修正 <b>あなたたち</b></span>
+          <span>音源サンプリング <b>弦音ハルカ</b></span>
+          <span>音源管理 <b>弦音ハルカ</b></span>
+        </div>
+      </section>
+
+      <p class="closing"><strong>この音源を使った創作を歓迎します。</strong><br>本利用規約は音源の正しい使用方法を使用者に告知しています。万が一法律的な紛争が発生した場合、すべて使用者が責任を負うものとします。</p>
+
+      <section class="tips" id="ja-tips">
+        <h2>ヒント</h2>
+        <ol>
+          <li>このボイスバンクは既定歌詞の <code>a</code> のみ使用可能です。それ以外の歌詞を入力すると正常に発音しません。</li>
+          <li>ボイスバンクの設定ファイル（<code>character.txt</code>、<code>oto.ini</code>、<code>readme.txt</code>）はすべてChinese Simplified(GB2312) エンコードで保存してください。スクリーンショット通りに設定しないと文字化けが発生し、音源が読み込めなくなります。</li>
+          <li>OpenUTAUのフォネマイザー設定：言語を日本語に選択し、<code>[JA VCV] Japanese VCV Phonemizer (legacy)</code> を選んでください。フォネマイザーの選択ミスは音が出ない原因になります。</li>
+          <li>本音源は上記に記載された利用規約を厳守して使用してください。</li>
+          <li>創作が上手くいきますように！</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p class="f-brand">管緒リルカ</p>
+      <p>UTAU Voicebank &amp; Character Usage Terms · 弦音ハルカ</p>
+      <p>ご質問がある場合：QQ 3786033638 / 3786033638@qq.com</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+  var META = {
+    zh: { dl:'下载音源', title:'管緒リルカ｜音源&角色完整使用规约' },
+    en: { dl:'Download', title:'Kansuo Riruka | Voicebank & Character Terms of Use' },
+    ja: { dl:'ダウンロード', title:'管緒リルカ｜音源&キャラクター利用規約' }
+  };
+  var btns = document.querySelectorAll('.lang-switch button');
+  var pages = document.querySelectorAll('.langpage');
+  var topdl = document.getElementById('topdl');
+
+  function setLang(l){
+    if(!META[l]) l = 'zh';
+    for(var i=0;i<pages.length;i++){
+      pages[i].hidden = pages[i].getAttribute('data-lang') !== l;
+    }
+    for(var j=0;j<btns.length;j++){
+      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === l);
+    }
+    document.documentElement.lang = l === 'zh' ? 'zh-CN' : (l === 'ja' ? 'ja' : 'en');
+    document.title = META[l].title;
+    topdl.textContent = META[l].dl;
+    try{ localStorage.setItem('riruka_lang', l); }catch(e){}
+    // 语言切换后跳到顶部，避免停留在另一语言的锚点位置
+    if(window.scrollY > 0) window.scrollTo(0,0);
+  }
+
+  for(var k=0;k<btns.length;k++){
+    btns[k].addEventListener('click', function(){
+      setLang(this.getAttribute('data-lang'));
+    });
+  }
+
+  var saved = null;
+  try{ saved = localStorage.getItem('riruka_lang'); }catch(e){}
+  var nav = (navigator.language || 'zh').toLowerCase();
+  var def = saved || (nav.indexOf('ja') === 0 ? 'ja' : (nav.indexOf('en') === 0 ? 'en' : 'zh'));
+  setLang(def);
+})();
+</script>
+</body>
+</html>
